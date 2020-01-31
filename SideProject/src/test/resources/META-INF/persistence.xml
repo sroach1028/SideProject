@@ -11,6 +11,10 @@
 <!-- class definitions  -->
 
 <class> com.sideproject.entities.User</class>
+<class> com.sideproject.entities.Address</class>
+<class> com.sideproject.entities.Rental</class>
+<class> com.sideproject.entities.Inventory</class>
+<class> com.sideproject.entities.Reservation</class>
 
 
     <properties>

@@ -16,6 +16,22 @@ CREATE SCHEMA IF NOT EXISTS `sideproject` DEFAULT CHARACTER SET utf8 ;
 USE `sideproject` ;
 
 -- -----------------------------------------------------
+-- Table `address`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `address` ;
+
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` INT NOT NULL,
+  `street` VARCHAR(200) NULL,
+  `city` VARCHAR(100) NOT NULL,
+  `state` VARCHAR(45) NOT NULL,
+  `zip` VARCHAR(45) NOT NULL,
+  `country_code` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `user` ;
@@ -24,7 +40,87 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(200) NOT NULL,
   `password` VARCHAR(200) NULL,
+  `email` VARCHAR(200) NULL,
+  `address_id` INT NULL,
+  `phone` VARCHAR(20) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_address_id_idx` (`address_id` ASC),
+  CONSTRAINT `fk_address_id`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `inventory`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `inventory` ;
+
+CREATE TABLE IF NOT EXISTS `inventory` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(200) NOT NULL,
+  `author` VARCHAR(45) NULL,
+  `year` VARCHAR(45) NULL,
+  `ages` VARCHAR(45) NULL,
+  `condition` VARCHAR(45) NULL,
+  `image_url` VARCHAR(200) NULL,
   PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `reservation`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `reservation` ;
+
+CREATE TABLE IF NOT EXISTS `reservation` (
+  `book_id` INT NOT NULL,
+  `user_id` VARCHAR(45) NOT NULL,
+  `date_reserved` VARCHAR(45) NOT NULL)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `rental`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `rental` ;
+
+CREATE TABLE IF NOT EXISTS `rental` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `checkout_date` DATE NOT NULL,
+  `return_date` DATE NOT NULL,
+  `late_fees` DOUBLE NULL,
+  `reader_id` INT NULL,
+  `lender_id` INT NULL,
+  `book_id` INT NULL,
+  `ship_address_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `reader_id_idx` (`reader_id` ASC),
+  INDEX `lender_id_idx` (`lender_id` ASC),
+  INDEX `book_id_idx` (`book_id` ASC),
+  INDEX `ship_address_id_idx` (`ship_address_id` ASC),
+  CONSTRAINT `reader_id`
+    FOREIGN KEY (`reader_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `lender_id`
+    FOREIGN KEY (`lender_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `book_id`
+    FOREIGN KEY (`book_id`)
+    REFERENCES `inventory` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ship_address_id`
+    FOREIGN KEY (`ship_address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -40,11 +136,42 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sideproject`;
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `country_code`) VALUES (1, '1971 Oswego St', 'Aurora', 'CO', '80010', 'US');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sideproject`;
-INSERT INTO `user` (`id`, `username`, `password`) VALUES (1, 'user', 'user');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `address_id`, `phone`) VALUES (1, 'user', 'user', 'user@user.com', 1, '000-111-1234');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `address_id`, `phone`) VALUES (2, 'other', 'other', 'other@email.com', 1, '000-222-3455');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `inventory`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sideproject`;
+INSERT INTO `inventory` (`id`, `title`, `author`, `year`, `ages`, `condition`, `image_url`) VALUES (1, 'The Neverending Story', 'Black', '1988', '5-9', 'Good', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `rental`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `sideproject`;
+INSERT INTO `rental` (`id`, `checkout_date`, `return_date`, `late_fees`, `reader_id`, `lender_id`, `book_id`, `ship_address_id`) VALUES (1, '2011-11-19', '2019-11-25', 0.00, 2, 1, 1, 1);
 
 COMMIT;
 

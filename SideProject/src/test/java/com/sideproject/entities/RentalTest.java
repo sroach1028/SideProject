@@ -1,7 +1,6 @@
 package com.sideproject.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-
+class RentalTest {
+	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Rental rental;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,22 +31,26 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		rental = em.find(Rental.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		rental = null;
 	}
 
 	@Test
 	void test() {
-		assertEquals("user", user.getUsername());
+		assertNotNull(rental);
 	}
 	@Test
-	void testAddressRelationship() {
-		assertEquals("Aurora", user.getAddress().getCity());
+	void testInventoryRelationship() {
+		assertEquals("Black", rental.getBook().getAuthor());
+	}
+	@Test
+	void testUserRelationship() {
+		assertEquals(2, rental.getReader().getId());
 	}
 
 }
