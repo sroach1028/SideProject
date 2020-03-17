@@ -1,0 +1,192 @@
+<app-publicnav></app-publicnav>
+<div class="main page-header" data-parallax="true" style="background-image: url('assets/img/background/macarons.jpg');">
+  <div class="filter"></div>
+  <div class="container">
+
+      <div class="motto text-center">
+          <h1 style="font-family:'Lucida Sans Unicode';">THE FROSTED ANGEL</h1>
+          <h3 >Custom Baking for All Occasions</h3>
+          <br />
+          <a href="https://www.youtube.com/watch?v=eSxv6IGBgFQ" class="btn btn-outline-info btn-round" target="_blank"><i class="fa fa-play"></i>Watch Demo</a>
+          <div class="row">
+            <div class="col-md-8 mr-auto ml-auto">
+            <a href="https://www.facebook.com/thefrostedangel" class="btn btn-link btn-primary btn-lg" title="Order on Facebook" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+            <a href="#" class="btn btn-link btn-warning btn-lg" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-sm-4 mr-auto ml-auto card bg-info">
+            <div class="card-header text-center btn btn-sm btn-link btn-round btn-primary text-light" id="heading" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="true" aria-controls="collapseOrder">
+              <h3><u>Track Your Order</u></h3><br>
+              <!-- <h6><button class="btn btn-sm btn-link btn-round btn-primary text-light" data-toggle="collapse" data-target="#collapseOrder" aria-expanded="true" aria-controls="collapseOrder">
+              </button></h6> -->
+            </div>
+
+            <div class="collapse" id="collapseOrder" aria-labelledby="heading">
+              <div class="card-body">
+                <form #trackingForm="ngForm">
+
+                  <label><h6>Email</h6></label>
+                  <div class="input-group form-group-no-border">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                      <i class="nc-icon nc-email-85"></i>
+                      </span>
+                    </div>
+                    <input type="text"
+                    name="email"
+                    id = "email"
+                    class="form-control"
+                    placeholder="Email"
+                    (focus)="focus=true"
+                    (blur)="focus=false"
+                    ngModel
+                    >
+                </div>
+
+              <label><h6>Order #</h6></label>
+              <div class="input-group form-group-no-border">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="nc-icon nc-key-25"></i>
+                  </span>
+                </div>
+                  <input type="text"
+                  class="form-control"
+                  placeholder="Order #"
+                  (focus)="focus1=true"
+                  (blur)="focus1=false"
+                  name = "id"
+                  id = "id"
+                  ngModel
+                  >
+              </div><br>
+              <a class="btn btn-warning btn-block btn-round" (click)="trackOrder(trackingForm)" data-toggle="modal" data-target="#orderModal">Check Order Status</a><br>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
+                  <!-- MODAL CONFIRMATION -->
+                  <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="orderModalLabel">Confirm Order Submission</h5>
+
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+
+                        </div>
+                        <div class="modal-body">
+                          <div *ngIf="order">
+                          {{order.customer.firstName}}'s Order<br>
+                          {{order.item.type}} : {{order.itemQuantity}}<br>
+                          Submitted: {{order.datePlaced}}<br>
+                          Status: {{order.accepted}}
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                        <!-- END MODAL -->
+<!-- <div class="main"> -->
+  <div class="section text-center">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 mr-auto ml-auto">
+              <h2 class="title">Let's talk product</h2>
+              <h5 class="description">Placing an order with us is fast and easy. Simply describe what you are looking for or share with us an image of your idea, and we will make it happen. We make bakery items for all occasions that are beautiful to look at and even more delicious to eat! Place an order via email, Facebook message, or give us a call for that personalized touch.  </h5>
+              <br><br>
+              <h2 class="title">How it works</h2>
+              <h5 class="description">How to place an order...blurb about what to expect after placing an order</h5>
+
+          </div>
+      </div>
+      <br/><br/>
+  </div>
+</div>
+
+<div id="content" class="section landing-section bg-secondary">
+    <app-content></app-content>
+</div>
+
+<div class="section text-center page-header" style="background-color: dimgray;">
+  <div class="container">
+      <h2 class="title">Let's talk about us</h2>
+      <div class="row">
+          <div class="col-md-4">
+              <div class="card card-profile card-plain">
+                  <div class="card-avatar">
+                      <img src="assets/img/people/kaci-baum-2.jpg" alt="...">
+                  </div>
+                  <div class="card-block">
+                          <div class="author">
+                              <h4 class="card-title text-light">Dianne Gower</h4>
+                              <h6 class="card-category text-info">Owner/Bakery Artist</h6>
+                          </div>
+
+                      <p class="card-description text-center text-light">
+                        Some stuff about Dianne, how long she has been doing this, how she larned, etc.
+                      </p>
+                  </div>
+                  <!-- <div class="card-footer text-center">
+                      <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
+                      <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
+                      <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+                  </div> -->
+              </div>
+          </div>
+
+          <div class="col-md-4">
+              <div class="card card-profile card-plain">
+                  <div class="card-avatar">
+                      <img src="assets/img/people/clem-onojeghuo-3.jpg" alt="...">
+                  </div>
+                  <div class="card-block">
+                          <div class="author">
+                              <h4 class="card-title text-light">Simon Gower</h4>
+                              <h6 class="card-category text-info">Co-Owner/Investor</h6>
+                          </div>
+
+                      <p class="card-description text-center text-light">
+                        Simon does stuff.
+                      </p>
+                  </div>
+                  <div class="card-footer text-center">
+                      <!-- <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
+                      <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
+                      <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a> -->
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-4">
+              <div class="card card-profile card-plain">
+                  <div class="card-avatar">
+                      <img src="assets/img/people/taster.jpg" alt="...">
+                  </div>
+                  <div class="card-block">
+                          <div class="author">
+                              <h4 class="card-title text-light">Little Gowers</h4>
+                              <h6 class="card-category text-info">Lead Tasters</h6>
+                          </div>
+                      <p class="card-description text-center text-light">
+                        The little tasters make sure the products pass rigorous guidelines so that when it reaches your door, it is guaranteed delicious!
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- </div> -->

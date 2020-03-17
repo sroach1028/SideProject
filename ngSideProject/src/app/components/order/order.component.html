@@ -1,0 +1,330 @@
+<nav class="navbar fixed-top bg-transparent">
+  <div class="container-fluid">
+      <div class="col-sm-12">
+        <a class="btn btn-primary btn-round float-right" rel="tooltip" href="https://www.facebook.com/thefrostedangel" target="_blank">
+          <strong class="text-neutral">Contact</strong>
+        </a>
+      </div>
+      </div>
+</nav>
+
+<div class="wrapper">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/background/cakes.jpg');">
+      <div class="filter"></div>
+      <div class="container">
+        <div class="motto text-center">
+            <h1 style="font-family:'Lucida Sans Unicode';">Place an Order</h1>
+        </div>
+
+    </div>
+  </div>
+
+  <section class="order-form my-4 mx-4">
+    <div class="container pt-4">
+      <form (ngSubmit)="submitOrder()" #orderForm="ngForm">
+        <div class="row">
+          <div class="col-12">
+            <h1>New Order Request</h1>
+            <span>Please take the time to read all notes and info for each input item</span>
+            <hr class="mt-1">
+          </div>
+
+          <div class="col-12">
+            <div class="row mx-4">
+              <div class="col-12 mb-2">
+                <label class="order-form-label">Name</label>
+              </div>
+            <div class="col-12 col-sm-6 form-group">
+              <input
+              class="order-form-input form-control"
+              name="firstName"
+              id="firstName"
+              placeholder="First"
+              [(ngModel)]="customer.firstName"
+              required
+              >
+
+
+            </div>
+            <div class="col-12 col-sm-6 mt-2 mt-sm-0 form-group">
+              <input
+              class="order-form-input form-control"
+              name="lastName"
+              id="lastName"
+              placeholder="Last"
+              required
+              [(ngModel)]="customer.lastName">
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-9">
+              <label for="type" class="order-form-label">Bakery Item (Cookie, Cake, etc.)</label>
+            </div>
+            <div class="col-3">
+              <label for="itemQuantity" class="order-form-label">Quantity #</label>
+            </div>
+            <div class="col-9 form-group">
+              <input
+              class="order-form-input form-control"
+              id="type"
+              name="type"
+              [(ngModel)]="item.type"
+              required
+              >
+            </div>
+            <div class="col-3 form-group">
+              <input
+              class="order-form-input form-control"
+              type="number"
+              min="1"
+              id="itemQuantity"
+              name="itemQuantity"
+              required
+              [(ngModel)]="order.itemQuantity"
+              >
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <label for="ingredients" class="order-form-label">Ingredients Specified</label><br>
+              <small>Note: If for some reason requested ingredients can not be accomodated, we will suggest and arrange for changes</small>
+              <small>If no ingredients specified, understand we will choose based on our own expertise</small>
+            </div>
+            <div class="col-12 form-group">
+              <input
+              class="order-form-input form-control"
+              name="ingredients"
+              id="ingredients"
+              [(ngModel)]="order.ingredients"
+              >
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <label for="designSpecified" class="order-form-label">Design</label><br>
+              <small>Explain your idea in as much detail as possible, we will let you know if we need clarification</small>
+            </div>
+            <div class="col-12 form-group">
+              <input
+              class="order-form-input form-control"
+              name="designSpecified"
+              id="designSpecified"
+              required
+              [(ngModel)]="order.designSpecified"
+              >
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <label for="allergiesSpecified" class="order-form-label">Allergies Specfied</label><br>
+              <small>Note: If none, enter 'N/A'</small>
+            </div>
+            <div class="col-12 form-group">
+              <input class="order-form-input form-control"
+              placeholder="N/A"
+              name="allergiesSpecified"
+              id="allergiesSpecified"
+              [(ngModel)]="order.allergiesSpecified"
+              required
+              >
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <label for="dateRequested" class="order-form-label" for="date-picker-example">Date Needed By</label><br>
+              <small>Note: this date is a request, in times of high workload, another date may need to be arranged between customer and Frosted Angel</small>
+            </div>
+            <div class="col-12 form-group">
+              <input
+              class="order-form-input datepicker form-control"
+              placeholder="Selected date"
+              type="date"
+              id="dateRequested"
+              name="dateRequested"
+              required
+              [(ngModel)]="order.dateRequested"
+              >
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="validation" id="validation" value="1">
+                <label for="validation" class="form-check-label">Select if opting for pickup at The Frosted Angel, located on county roads in Columbus, MO</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <label for="street" class="order-form-label">Delivery Address</label>
+            </div>
+            <div class="col-12 form-group">
+              <input
+              class="order-form-input form-control"
+              placeholder="Street Address"
+              id="street"
+              name="street"
+              [(ngModel)]="address.street"
+              >
+            </div>
+            <div class="col-12 col-sm-6 mt-2 pr-sm-2 form-group">
+              <input
+              class="order-form-input form-control"
+              placeholder="City"
+              name="city"
+              id="city"
+              [(ngModel)]="address.city"
+              >
+            </div>
+            <div class="col-12 col-sm-6 mt-2 pl-sm-0 form-group">
+              <input
+              class="order-form-input form-control"
+              placeholder="State"
+              id="state"
+              name="state"
+              [(ngModel)]="address.state"
+              >
+            </div>
+            <div class="col-12 col-sm-6 mt-2 pr-sm-2 form-group">
+              <input class="order-form-input form-control"
+              placeholder="Postal / Zip Code"
+              name="zip"
+              id="zip"
+              [(ngModel)]="address.zip"
+              >
+            </div>
+            <div class="col-12 col-sm-6 mt-2 pl-sm-0 form-group">
+              <input class="order-form-input form-control"
+              value="USA"
+              placeholder="USA"
+              id="country"
+              name="country"
+              readonly
+              [(ngModel)]="address.country"
+              >
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <label class="order-form-label">Contact Info</label><br>
+              <small>Note: Frequent contact will be kept through email and phone, in case of inquiries and updates</small>
+            </div>
+            <div class="col-6">
+              <label for="phone" class="order-form-label">Phone</label>
+            </div>
+            <div class="col-6">
+              <label for="email" class="order-form-label">Email</label>
+            </div>
+            <div class="col-12 col-sm-6 mt-2 pr-sm-2 form-group">
+              <input
+              class="order-form-input form-control"
+              placeholder="Phone"
+              name="phone"
+              id="phone"
+              [(ngModel)]="customer.phone"
+              >
+            </div>
+            <div class="col-12 col-sm-6 mt-2 pl-sm-0 form-group">
+              <input
+              class="order-form-input form-control"
+              placeholder="Email"
+              name="email"
+              id="email"
+              required
+              [(ngModel)]="customer.email"
+              >
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12">
+              <div class="form-group">
+                <input type="checkbox"
+                class="form-check-input form-control"
+                name="active"
+                ngModel
+                required
+                >
+                <label for="validation" class="form-check-label">I understand the submission of this form is just a request, that the order will only be finalized after
+                                                      approved by Frosted Angel and receipt of payment. Furthermore, I understand the date
+                                                  requested is not final, and may need rearranged at the discretion of Frosted Angel </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-4">
+            <div class="col-12 col-sm-3 mt-2 pr-sm-2">
+              <button
+              type="submit"
+              [disabled]="!orderForm.form.valid"
+              class="order-form-input bg-warning"
+              data-toggle="modal"
+              data-target="#confirmModal" >
+              Submit Order Request
+              </button>
+            </div>
+                  <!-- MODAL CONFIRMATION -->
+            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Confirm Order Submission</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div>
+                  <div class="modal-body">
+                    Are you ready to submit?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No, just a sec..</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#successModal" [disabled]="!orderForm.form.valid">Yes, Submit!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  <!-- END MODAL -->
+
+                  <!-- MODAL SUCCESS -->
+            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Order Requested</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p *ngIf="newOrder">Thank you for your order request! We will review and get back to you as soon as possible!<br><br>
+                      <strong>Your Request #: {{newOrder.id}}</strong><br>
+                      <small>*Please take note of this number, it will be used for status tracking</small>
+                    </p>
+                    <p *ngIf="!newOrder">Unable to process your request at this time, please try again later.</p>
+
+                  </div>
+                  <div class="modal-footer">
+                    <a class="btn btn-secondary" data-dismiss="modal" [routerLink]="['/home']">Close</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  <!-- END MODAL -->
+
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,16 @@
+i {
+  font-size: 50px;
+  margin: 0px;
+  padding: 0px;
+  size: 20px;
+  cursor: pointer;
+}
+
+.btn{
+  cursor: pointer;
+
+}
+
+* {
+  font-family:'Lucida Sans Unicode' !important;
+}

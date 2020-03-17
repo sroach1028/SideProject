@@ -2,6 +2,7 @@ package com.sideproject.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -21,15 +24,24 @@ public class User {
 	private String password;
 	private String email;
 	private String phone;
+	private String role;
+	private boolean enabled;
 	
-//	@OneToMany(mappedBy="lender")
-//	private List<Order> lendings;
-//	@OneToMany(mappedBy="reader")
-//	private List<Order> rentals;
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+	
+	@JsonIgnoreProperties({"customer"})
+	@OneToMany(mappedBy="customer")
+	private List<Order> ordersPlaced;
 	
 	@ManyToOne
 	@JoinColumn(name="address_id")
 	private Address address;
+	
+	// G E T T E R S / S E T T E R S //
 	
 	public String getUsername() {
 		return username;
@@ -68,6 +80,37 @@ public class User {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public boolean isEnabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	public List<Order> getOrdersPlaced() {
+		return ordersPlaced;
+	}
+	public void setOrdersPlaced(List<Order> ordersPlaced) {
+		this.ordersPlaced = ordersPlaced;
+	}
 	public User(String username, String password) {
 		super();
 		this.username = username;
@@ -81,6 +124,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
+
 	
 	
 }

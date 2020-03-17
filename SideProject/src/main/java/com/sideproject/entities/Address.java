@@ -24,11 +24,17 @@ public class Address {
 	
 	@Column(name = "country_code")
 	private String country;
-//	@OneToMany(mappedBy="shipAddress")
-//	private List<Order> orders;
+	
+	@OneToMany(mappedBy="shipAddress")
+	private List<Order> orders;
+	
+	@OneToMany(mappedBy="address")
+	private List<User> users;
 	
 	private String zip;
 
+	
+	
 	public int getId() {
 		return id;
 	}

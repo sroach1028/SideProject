@@ -21,12 +21,12 @@ USE `sideproject` ;
 DROP TABLE IF EXISTS `address` ;
 
 CREATE TABLE IF NOT EXISTS `address` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(200) NULL,
   `city` VARCHAR(100) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
-  `zip` VARCHAR(45) NOT NULL,
-  `country_code` VARCHAR(45) NOT NULL,
+  `zip` VARCHAR(45) NULL,
+  `country_code` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -38,11 +38,15 @@ DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(200) NOT NULL,
+  `username` VARCHAR(200) NULL,
   `password` VARCHAR(200) NULL,
-  `email` VARCHAR(200) NULL,
+  `email` VARCHAR(200) NOT NULL,
   `address_id` INT NULL,
-  `phone` VARCHAR(20) NULL,
+  `phone` VARCHAR(20) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `role` VARCHAR(45) NULL DEFAULT 'standard',
+  `enabled` TINYINT(1) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_address_id_idx` (`address_id` ASC),
   CONSTRAINT `fk_address_id`
@@ -54,73 +58,73 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `inventory`
+-- Table `item`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inventory` ;
+DROP TABLE IF EXISTS `item` ;
 
-CREATE TABLE IF NOT EXISTS `inventory` (
+CREATE TABLE IF NOT EXISTS `item` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(200) NOT NULL,
-  `author` VARCHAR(45) NULL,
-  `year` VARCHAR(45) NULL,
-  `ages` VARCHAR(45) NULL,
-  `condition` VARCHAR(45) NULL,
-  `image_url` VARCHAR(200) NULL,
+  `type` VARCHAR(200) NOT NULL,
+  `image_one` VARCHAR(200) NULL,
+  `image_two` VARCHAR(200) NULL,
+  `image_three` VARCHAR(200) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `reservation`
+-- Table `orders_placed`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `reservation` ;
+DROP TABLE IF EXISTS `orders_placed` ;
 
-CREATE TABLE IF NOT EXISTS `reservation` (
-  `book_id` INT NOT NULL,
-  `user_id` VARCHAR(45) NOT NULL,
-  `date_reserved` VARCHAR(45) NOT NULL)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `rental`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `rental` ;
-
-CREATE TABLE IF NOT EXISTS `rental` (
+CREATE TABLE IF NOT EXISTS `orders_placed` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `checkout_date` DATE NOT NULL,
-  `return_date` DATE NOT NULL,
-  `late_fees` DOUBLE NULL,
-  `reader_id` INT NULL,
-  `lender_id` INT NULL,
-  `book_id` INT NULL,
+  `date_placed` VARCHAR(50) NULL,
+  `date_requested` VARCHAR(45) NULL,
+  `date_fulfilled` VARCHAR(50) NULL,
+  `customer_id` INT NULL,
+  `ingredients_specified` VARCHAR(500) NULL,
   `ship_address_id` INT NULL,
+  `price` DOUBLE NULL,
+  `accepted` VARCHAR(20) NULL,
+  `item_id` INT NULL,
+  `item_quantity` INT NULL,
+  `design_specified` VARCHAR(500) NULL,
+  `occasion` VARCHAR(500) NULL,
+  `allergies_specified` VARCHAR(500) NULL,
+  `special_requests` VARCHAR(500) NULL,
   PRIMARY KEY (`id`),
-  INDEX `reader_id_idx` (`reader_id` ASC),
-  INDEX `lender_id_idx` (`lender_id` ASC),
-  INDEX `book_id_idx` (`book_id` ASC),
-  INDEX `ship_address_id_idx` (`ship_address_id` ASC),
-  CONSTRAINT `reader_id`
-    FOREIGN KEY (`reader_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `lender_id`
-    FOREIGN KEY (`lender_id`)
+  INDEX `reader_id_idx` (`customer_id` ASC),
+  INDEX `item_id_idx` (`item_id` ASC),
+  CONSTRAINT `customer_id`
+    FOREIGN KEY (`customer_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `book_id`
-    FOREIGN KEY (`book_id`)
-    REFERENCES `inventory` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `ship_address_id`
     FOREIGN KEY (`ship_address_id`)
     REFERENCES `address` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `item_id`
+    FOREIGN KEY (`item_id`)
+    REFERENCES `item` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `image`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `image` ;
+
+CREATE TABLE IF NOT EXISTS `image` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image_url` VARCHAR(500) NOT NULL,
+  `title` VARCHAR(100) NULL,
+  `description` VARCHAR(300) NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -150,28 +154,32 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sideproject`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `address_id`, `phone`) VALUES (1, 'user', 'user', 'user@user.com', 1, '000-111-1234');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `address_id`, `phone`) VALUES (2, 'other', 'other', 'other@email.com', 1, '000-222-3455');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `address_id`, `phone`, `first_name`, `last_name`, `role`, `enabled`) VALUES (1, 'user', 'user', 'user@user.com', 1, '000-111-1234', 'User', 'Userman', 'standard', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `address_id`, `phone`, `first_name`, `last_name`, `role`, `enabled`) VALUES (2, 'other', 'other', 'other@email.com', 1, '000-222-3455', 'Other', 'Otherman', 'standard', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `address_id`, `phone`, `first_name`, `last_name`, `role`, `enabled`) VALUES (3, 'admin', '$2a$10$5NVjt2axRvPvxRMMPy5kUOvIVkz5VMoPHMdk51sMaX/hFpApcKwly', 'dgower83@gmail.com', 1, '660-909-8500', 'Dianne', 'Gower', 'admin', 1);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `inventory`
+-- Data for table `item`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sideproject`;
-INSERT INTO `inventory` (`id`, `title`, `author`, `year`, `ages`, `condition`, `image_url`) VALUES (1, 'The Neverending Story', 'Black', '1988', '5-9', 'Good', NULL);
+INSERT INTO `item` (`id`, `type`, `image_one`, `image_two`, `image_three`) VALUES (1, 'Cookie', NULL, NULL, NULL);
+INSERT INTO `item` (`id`, `type`, `image_one`, `image_two`, `image_three`) VALUES (2, 'Cupcake', NULL, NULL, NULL);
+INSERT INTO `item` (`id`, `type`, `image_one`, `image_two`, `image_three`) VALUES (3, 'Cake', NULL, NULL, NULL);
+INSERT INTO `item` (`id`, `type`, `image_one`, `image_two`, `image_three`) VALUES (4, 'Macaroon', NULL, NULL, NULL);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `rental`
+-- Data for table `orders_placed`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `sideproject`;
-INSERT INTO `rental` (`id`, `checkout_date`, `return_date`, `late_fees`, `reader_id`, `lender_id`, `book_id`, `ship_address_id`) VALUES (1, '2011-11-19', '2019-11-25', 0.00, 2, 1, 1, 1);
+INSERT INTO `orders_placed` (`id`, `date_placed`, `date_requested`, `date_fulfilled`, `customer_id`, `ingredients_specified`, `ship_address_id`, `price`, `accepted`, `item_id`, `item_quantity`, `design_specified`, `occasion`, `allergies_specified`, `special_requests`) VALUES (1001, '2011-11-19', NULL, '2019-11-25', 2, 'Sugar batter and Cream Cheese Icing', 1, 10.99, 'ACCEPTED', 1, 12, 'Minions Characters', 'Birthday', 'None', 'One of each minion type, if possible');
 
 COMMIT;
 

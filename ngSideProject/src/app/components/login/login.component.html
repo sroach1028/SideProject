@@ -1,0 +1,165 @@
+<div class="wrapper">
+  <div class="page-header" style="background-image: url('assets/img/background/snowflake_cookies.jpeg');">
+    <div class="filter"></div>
+    <div class="container">
+      <div class="row">
+                  <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+                    <div class="card card-register bg-success">
+                        <h3 class="title">Login</h3>
+                        <h4 *ngIf="error" style="color: red;">
+                          * Incorrect username/password was entered
+                        </h4>
+
+                        <form #loginForm="ngForm" class="register-form">
+
+                          <label>Email</label>
+                          <div class="input-group form-group-no-border">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                  <i class="nc-icon nc-email-85"></i>
+                              </span>
+                            </div>
+                              <input type="text"
+                              name="username"
+                              id = "username"
+                              class="form-control"
+                              placeholder="Email"
+                              (focus)="focus=true"
+                              (blur)="focus=false"
+                              ngModel
+                              >
+                          </div>
+
+                          <label>Password</label>
+                          <div class="input-group form-group-no-border">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                  <i class="nc-icon nc-key-25"></i>
+                              </span>
+                            </div>
+                              <input type="text"
+                              class="form-control"
+                              placeholder="Password"
+                              (focus)="focus1=true"
+                              (blur)="focus1=false"
+                              name = "password"
+                              id = "password"
+                              ngModel
+                              >
+                          </div>
+                          <button class="btn btn-primary btn-block btn-round" (click)="login(loginForm)">Login</button>
+                      </form>
+
+                        <div class="forgot">
+                            <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+                        </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+                  <div class="card card-register bg-warning">
+                    <h3 class="title">Register</h3><br>
+                    <small class="text-danger">Alternatively, continue as a guest, but you won't accrue points or receive special offers..</small>
+                    <form #registerForm="ngForm" class="register-form">
+
+                        <label>Email</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="nc-icon nc-email-85"></i>
+                            </span>
+                          </div>
+                            <input type="text"
+                            class="form-control"
+                            placeholder="Email"
+                            (focus)="focus=true"
+                            (blur)="focus=false"
+                            name = "email"
+                            id = "email"
+                            ngModel
+                            >
+                        </div>
+
+                        <label>Password</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="nc-icon nc-key-25"></i>
+                            </span>
+                          </div>
+                            <input type="text"
+                            class="form-control"
+                            placeholder="Password"
+                            (focus)="focus1=true"
+                            (blur)="focus1=false"
+                            name = "password"
+                            id="password"
+                            ngModel
+                            >
+                        </div>
+
+                        <label>First Name</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="nc-icon nc-key-25"></i>
+                            </span>
+                          </div>
+                            <input type="text"
+                            class="form-control"
+                            placeholder="First"
+                            (focus)="focus1=true"
+                            (blur)="focus1=false"
+                            name="firstName"
+                            id="firstName"
+                            ngModel
+                            >
+                        </div>
+
+                        <label>Last Name</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="nc-icon nc-key-25"></i>
+                            </span>
+                          </div>
+                            <input type="text"
+                            class="form-control"
+                            placeholder="Last"
+                            (focus)="focus1=true"
+                            (blur)="focus1=false"
+                            name="lastName"
+                            id="lastName"
+                            ngModel
+                            >
+                        </div>
+
+                        <label>Phone</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="nc-icon nc-key-25"></i>
+                            </span>
+                          </div>
+                            <input type="text"
+                            class="form-control"
+                            placeholder="Phone"
+                            (focus)="focus1=true"
+                            (blur)="focus1=false"
+                            name="phone"
+                            id="phone"
+                            ngModel
+                            >
+                        </div>
+
+                        <button class="btn btn-success btn-block btn-round" (click)="register(registerForm)">Register</button>
+                    </form>
+                </div>
+                </div> -->
+
+              </div>
+          </div>
+  </div>
+</div>
+
+

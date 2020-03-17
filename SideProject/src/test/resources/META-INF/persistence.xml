@@ -12,9 +12,9 @@
 
 <class> com.sideproject.entities.User</class>
 <class> com.sideproject.entities.Address</class>
-<class> com.sideproject.entities.Rental</class>
-<class> com.sideproject.entities.Inventory</class>
-<class> com.sideproject.entities.Reservation</class>
+<class> com.sideproject.entities.Item</class>
+<class> com.sideproject.entities.Order</class>
+<class> com.sideproject.entities.Image</class>
 
 
     <properties>

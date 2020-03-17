@@ -1,0 +1,95 @@
+<h2>Add content</h2><br>
+<div class="row">
+<div class="col-12">
+  <form class="register-form" #imageForm="ngForm">
+
+    <div class="row-mx-4">
+
+      <div class="col-12 mb-2">
+        <label>Image Address/URL</label>
+      </div>
+      <div class="col-12">
+    <div class="input-group form-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <i class="nc-icon nc-key-25"></i>
+        </span>
+      </div>
+        <input type="text"
+        name="url"
+        id = "url"
+        class="form-control"
+        placeholder="Image Address"
+        ngModel
+        >
+
+    </div>
+  </div>
+
+    <div class="col-12 mb-2">
+      <label>Title</label>
+    </div>
+
+    <div class="col-12">
+      <div class="input-group form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="nc-icon nc-key-25"></i>
+          </span>
+        </div>
+        <input type="text"
+        name="title"
+        id = "title"
+        class="form-control"
+        placeholder="Image Title"
+        ngModel
+        >
+      </div>
+    </div>
+
+    <div class="col-12 mb-2">
+      <label>Description</label>
+    </div>
+    <div class="col-12">
+      <div class="input-group form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="nc-icon nc-key-25"></i>
+          </span>
+        </div>
+        <input type="text"
+        name="description"
+        id = "description"
+        class="form-control"
+        placeholder="Image Description"
+        ngModel
+        >
+      </div>
+    </div>
+  </div>
+
+</form><br>
+
+</div>
+<div class="col-4"></div>
+<div class="col-md-4">
+<button class="btn btn-primary btn-block btn-round" (click)="postNewImage(imageForm); imageForm.reset()">Post</button>
+</div>
+</div><br>
+
+<div class="row">
+<div class="col-md-4" *ngFor="let image of images">
+  <div class="card">
+      <img class="card-img-top" src={{image.url}}>
+      <div class="card-body">
+         <div class="card-title">
+           <h2>{{image.title}}</h2>
+         </div>
+         <div class="card-text">
+           <p>{{image.description}}</p>
+         </div>
+         <button class="btn btn-danger" (click)="removeImage(image)">Remove</button>
+      </div>
+  </div>
+</div>
+</div>

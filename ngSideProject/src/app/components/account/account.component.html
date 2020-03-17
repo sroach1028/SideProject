@@ -1,0 +1,83 @@
+<!-- <div class="wrapper"> -->
+  <!-- <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/background/cakes.jpg');">
+      <div class="filter"></div>
+      <div class="container">
+        <div class="motto text-center" *ngIf="user.role == 'admin'">
+            <h1 style="font-family:'Lucida Sans Unicode';">OWNER PORTAL</h1>
+        </div>
+    </div>
+  </div> -->
+  <div class="section profile-content">
+      <div class="container">
+          <div class="owner">
+              <div class="name" *ngIf="user">
+                  <h4 class="title">{{user.firstName}} {{user.lastName}}<br /></h4>
+              </div>
+          </div>
+      </div>
+<hr>
+<h2>Order Tracker</h2>
+<div class="bg-info">
+      <h4 class="title"><strong>Pending Orders</strong></h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Date Ordered</th>
+        <th scope="col">Item</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Cust. Email</th>
+        <th scope="col">Cust. Phone</th>
+        <th scope="col">Accept/Reject</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <th scope="row">{{order.datePlaced}}</th>
+        <td>{{order.item.type}}</td>
+        <td>{{order.itemQuantity}}</td>
+        <td>{{order.price}}</td>
+        <td>{{order.customer.lastName}}, {{order.customer.firstName}}</td>
+        <td>{{order.customer.email}}</td>
+        <td>{{order.customer.phone}}</td>
+        <td>
+          <i class="fa fa-thumbs-up fa-lg text-success btn btn-neutral"></i>
+          <i class="fa fa-thumbs-down fa-lg text-danger btn btn-neutral"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div><br><br>
+
+<div class="bg-info">
+  <div class="owner">
+    <div class="name">
+      <h4 class="title"><strong>Completed Orders</strong></h4>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Date Ordered</th>
+        <th scope="col">Item</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Cust. Email</th>
+        <th scope="col">Cust. Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <th scope="row">{{order.datePlaced}}</th>
+        <td>{{order.item.type}}</td>
+        <td>{{order.itemQuantity}}</td>
+        <td>{{order.price}}</td>
+        <td>{{order.customer.lastName}}, {{order.customer.firstName}}</td>
+        <td>{{order.customer.email}}</td>
+        <td>{{order.customer.phone}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

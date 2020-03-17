@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="text-center">
+  <h2 class="text-light">Our Most Requested Treats:</h2>
+  </div><br>
+<div class="row">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <div class="carousel-inner">
+      <div class="card carousel-item active bg-light">
+        <img class="card-img-top" src="assets/img/content/84139623_477199889638027_7563744867784851456_o.jpg" alt="First slide">
+        <div class="card-body">
+          <h2 class="card-title">Macarons</h2>
+          <p class="card-text">
+            I made these macarons with good ingredients and they have feet
+          </p>
+        </div>
+      </div>
+
+      <div class="card carousel-item" *ngFor="let image of images">
+        <img class="card-img-top" src={{image.url}}>
+        <div class="card-body">
+          <h2 class="card-title">{{image.title}}</h2>
+          <p class="card-text">{{image.description}}</p>
+        </div>
+      </div>
+    </div>
+
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span aria-hidden="true"><i class="fa fa-arrow-right"></i></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+</div>
+</div>
+

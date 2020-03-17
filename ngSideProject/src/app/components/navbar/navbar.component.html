@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-info" color-on-scroll="500">
+  <div class="container">
+
+      <div class="navbar-translate">
+          <a class="navbar-brand text-neutral" [routerLink]="['/admin']">
+            <i class="fa fa-home fa-2x text-neutral"></i>
+          </a>
+      </div>
+      <div class="navbar-collapse" id="navbarToggler">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item" *ngIf="!loggedIn">
+                  <a class="nav-link text-neutral" [routerLink]="['/login']"><i class="nc-icon nc-layout-11"></i>ADMIN LOGIN</a>
+              </li>
+              <!-- <li class="nav-item" *ngIf="loggedIn">
+                  <a class="nav-link text-success" [routerLink]="['/account']"><i class="nc-icon nc-layout-11"></i>ORDER TRACKER</a>
+              </li> -->
+              <li class="nav-item" *ngIf="loggedIn">
+                  <a class="nav-link text-neutral" (click)="logout();" [routerLink]="['/admin']"><i class="nc-icon nc-layout-11"></i>LOGOUT</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
