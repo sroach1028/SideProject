@@ -8,14 +8,11 @@
     </div>
   </div> -->
   <div class="section profile-content">
-      <div class="container">
-          <div class="owner">
+          <!-- <div class="owner">
               <div class="name" *ngIf="user">
-                  <h4 class="title">{{user.firstName}} {{user.lastName}}<br /></h4>
+                  <h4 class="title text-primary">{{user.firstName}} {{user.lastName}}<br /></h4>
               </div>
-          </div>
-      </div>
-<hr>
+          </div> -->
 <h2>Order Tracker</h2>
 <div class="bg-info">
       <h4 class="title"><strong>Pending Orders</strong></h4>
@@ -42,8 +39,8 @@
         <td>{{order.customer.email}}</td>
         <td>{{order.customer.phone}}</td>
         <td>
-          <i class="fa fa-thumbs-up fa-lg text-success btn btn-neutral"></i>
-          <i class="fa fa-thumbs-down fa-lg text-danger btn btn-neutral"></i>
+          <i class="fa fa-thumbs-up fa-lg text-success btn btn-neutral" (click)="approveOrder()"></i>
+          <i class="fa fa-thumbs-down fa-lg text-danger btn btn-neutral" (click)="rejectOrder()"></i>
         </td>
       </tr>
     </tbody>

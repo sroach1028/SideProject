@@ -31,7 +31,7 @@ class OrderTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		order = em.find(Order.class, 1);
+		order = em.find(Order.class, 1001);
 	}
 
 	@AfterEach

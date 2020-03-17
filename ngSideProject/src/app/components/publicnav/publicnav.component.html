@@ -1,15 +1,20 @@
-<nav class="navbar fixed-top bg-transparent">
+<nav class="bg-secondary">
   <div class="container-fluid">
-      <div class="col-sm-3 mr-auto ml-auto">
-        <a class="btn btn btn-outline btn-primary btn-round" [routerLink]="['/order']">
-          <strong class="text-neutral">Place Order</strong>
+    <div class="row">
+    <div class="col-sm-4">
+      <h2 class=text-light>The Frosted Angel</h2>
+    </div>
+      <div class="col-sm-8">
+        <a [routerLink]="['/order']">
+          <h3 class="text-light"><strong>Place Order</strong></h3>
+        </a>
+        <a rel="tooltip" href="https://www.facebook.com/thefrostedangel" target="_blank">
+          <h3 class="text-light"><strong>Contact</strong></h3>
         </a>
       </div>
+    </div>
 
-      <div class="col-sm-3 mr-auto ml-auto">
-        <a class="btn btn-primary btn-round float-right" rel="tooltip" href="https://www.facebook.com/thefrostedangel" target="_blank">
-          <strong class="text-neutral">Contact</strong>
-        </a>
-      </div>
+      <!-- <div class="col-sm-3 mr-auto ml-auto">
+      </div> -->
       </div>
 </nav>

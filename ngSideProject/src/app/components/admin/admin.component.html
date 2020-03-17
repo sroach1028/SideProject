@@ -1,5 +1,4 @@
 <app-navbar></app-navbar>
-
 <div class="page-header" data-parallax="true" style="background-image: url('assets/img/background/macarons.jpg');">
   <div class="filter"></div>
   <div class="container">
@@ -8,15 +7,11 @@
           <h2>Admin Portal</h2>
           <h3 *ngIf="!loggedIn">Login to edit content and track orders</h3>
           <h3 *ngIf="loggedIn">Below Sections for tracking orders and adding content</h3>
-          <br/>
       </div>
   </div>
 </div>
-<div class="container-fluid main section text-center">
-    <app-account *ngIf="loggedIn">
-
-    </app-account>
-</div>
+<hr>
+    <app-account *ngIf="loggedIn"></app-account>
 <div class="main">
   <div class="section text-center">
   <div class="container">
